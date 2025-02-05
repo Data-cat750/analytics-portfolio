@@ -55,3 +55,10 @@ Summer is the most popular season for bike rentals, with both casual riders and 
 Winter sees a significant drop in bike rentals overall. However, interestingly, annual members recorded 274,513 more rides than casual riders during the winter season, highlighting their consistent usage even in colder months.
 
 Distance Traveled: Despite the differences in ride duration and frequency, the distance traveled by both casual riders and annual members is about 2.1 km, indicating that both groups tend to use bikes for similar distances on average, even if the ride duration varies.
+
+
+# **Data Visualizations**
+
+This chart compares the number of rides taken by members and casual riders across each day of the week.
+<iframe src="https://public.tableau.com/views/BikeRentalsbyDayAComparisonofMemberandCasualRiders/Sheet2?:embed=y&:display_count=yes&:showTabs=no&:toolbar=yes" width="100%" height="600"></iframe>
+
