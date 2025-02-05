@@ -21,3 +21,7 @@ This dataset will allow us to analyze the behavior of both casual riders and ann
 ## Data License
 
 The data used in this project is provided under the terms of the [Divvy Bikes Data License Agreement](https://divvybikes.com/data-license-agreement).
+
+# **Data Cleaning & Preparation**
+The data used in this analysis was cleaned and prepared using a series of SQL queries. For a detailed list of the queries used to clean and transform the data, please refer to the file linked below:
+[SQL Queries for Data Cleaning & Preparation]()
