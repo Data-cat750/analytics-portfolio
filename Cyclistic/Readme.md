@@ -25,3 +25,19 @@ The data used in this project is provided under the terms of the [Divvy Bikes Da
 # **Data Cleaning & Preparation**
 The data used in this analysis was cleaned and prepared using a series of SQL queries. For a detailed list of the queries used to clean and transform the data, please refer to the file linked below:
 [SQL Queries for Data Cleaning & Preparation](https://github.com/Data-cat750/analytics-portfolio/blob/main/Cyclistic/SQL)
+
+# **Analysis Approach**
+To analyze how casual riders and annual members use Cyclistic bikes differently, I followed a structured approach using the cleaned and prepared data. The key steps in this process were:
+
+Segmentation: I first separated the data into two groups based on rider type—casual riders and annual members—to compare their usage patterns.
+
+Descriptive Statistics: I calculated key metrics such as the average ride duration, number of rides, and peak riding times (by day of the week and time of year) for each group. This helped identify trends and patterns specific to each rider type.
+
+Comparison of Patterns: I compared ride patterns for casual riders and annual members, focusing on variables like:
+  Ride duration: Do casual riders take shorter or longer rides compared to members?
+  
+  Time of year: Are casual riders more likely to use bikes during certain days of the week or seasons of the year compared to members?
+  
+  Distance riden: Are there differences in the distance riden between casual riders and members?
+
+  Visualization: I created visualizations to effectively communicate trends and differences between the two groups, making the data easier to interpret.
