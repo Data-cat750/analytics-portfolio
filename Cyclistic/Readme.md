@@ -44,7 +44,7 @@ SQL Queries: For data analysis, I used SQL to process and manipulate the data. F
 # **Summary of Analysis**
 The analysis of Cyclistic's bike-share usage revealed several key insights into the behavior of casual riders versus annual members:
 
-Ride Duration: On average, casual riders tend to have longer rides than annual members. Casual riders record an average of 22 minutes per ride, double the 11 minutes per ride of members. This suggests that casual riders may be using the bikes for leisure, while members may be more focused on commuting or short-term usage.
+Ride Duration: On average, casual riders tend to have longer rides than annual members. Casual riders record an average of 22.1 minutes per ride, almost double the 11.7 minutes per ride of members. This suggests that casual riders may be using the bikes for leisure, while members may be more focused on commuting or short-term usage.
 
 Ride Frequency and Timing:
 Casual riders tend to use bikes more frequently on weekends, which aligns with the idea that they are more likely to use the bikes for recreational purposes.
@@ -64,3 +64,7 @@ This chart compares the number of rides taken by members and casual riders acros
 
 This chart compares the number of rides taken by members and casual riders across different seasons.
 [Seasonal, Member vs Casual Rides](https://public.tableau.com/views/BikeRentalsAnalysis_17387987204010/Sheet3?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+
+This chart compares the average distance riden by members and casual riders. [Average Distance Traveled Member vs Casual Rider](https://public.tableau.com/views/BikeRentalsAnalysis_17387987204010/AVGDistanceTraveled?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+
+This chart compares the average ride time by member and casual riders.[Average Ride Time Member vs Casual](https://public.tableau.com/views/BikeRentalsAnalysis_17387987204010/AVGRideTime?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
