@@ -35,8 +35,6 @@ Comparison of Patterns: I compared ride patterns for casual riders and annual me
   Ride duration: Do casual riders take shorter or longer rides compared to members?
   
   Time of year: Are casual riders more likely to use bikes during certain days of the week or seasons of the year compared to members?
-  
-  Distance riden: Are there differences in the distance riden between casual riders and members?
 
   Visualization: I created visualizations to effectively communicate trends and differences between the two groups, making the data easier to interpret.
 
