@@ -41,4 +41,4 @@ Comparison of Patterns: I compared ride patterns for casual riders and annual me
   Visualization: I created visualizations to effectively communicate trends and differences between the two groups, making the data easier to interpret.
 
 SQL Queries: For data analysis, I used SQL to process and manipulate the data. For a detailed list of the queries used to analyze the data, please refer to file linked below
-[SQL Queries for Data Analysis]()
+[SQL Queries for Data Analysis](https://github.com/Data-cat750/analytics-portfolio/blob/main/Cyclistic/SQL%20Analysis)
