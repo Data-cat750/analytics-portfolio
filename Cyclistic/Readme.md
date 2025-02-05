@@ -29,7 +29,7 @@ The data used in this analysis was cleaned and prepared using a series of SQL qu
 # **Analysis**
 To analyze how casual riders and annual members use Cyclistic bikes differently, I followed a structured approach using the cleaned and prepared data. The key steps in this process were:
 
-Descriptive Statistics: I calculated key metrics such as the average ride duration, number of rides, and peak riding times (by day of the week and time of year) for each group. This helped identify trends and patterns specific to each rider type.
+Descriptive Statistics: I calculated key metrics such as the average ride duration and peak riding times (by day of the week and time of year) for each group. This helped identify trends and patterns specific to each rider type.
 
 Comparison of Patterns: I compared ride patterns for casual riders and annual members, focusing on variables like:
   Ride duration: Do casual riders take shorter or longer rides compared to members?
@@ -40,3 +40,18 @@ Comparison of Patterns: I compared ride patterns for casual riders and annual me
 
 SQL Queries: For data analysis, I used SQL to process and manipulate the data. For a detailed list of the queries used to analyze the data, please refer to file linked below
 [SQL Queries for Data Analysis](https://github.com/Data-cat750/analytics-portfolio/blob/main/Cyclistic/SQL%20Analysis)
+
+# **Summary of Analysis**
+The analysis of Cyclistic's bike-share usage revealed several key insights into the behavior of casual riders versus annual members:
+
+Ride Duration: On average, casual riders tend to have longer rides than annual members. Casual riders record an average of 22 minutes per ride, double the 11 minutes per ride of members. This suggests that casual riders may be using the bikes for leisure, while members may be more focused on commuting or short-term usage.
+
+Ride Frequency and Timing:
+Casual riders tend to use bikes more frequently on weekends, which aligns with the idea that they are more likely to use the bikes for recreational purposes.
+In contrast, annual members use the bikes more during weekdays, indicating that they might be using the bikes for daily commuting or work-related trips.
+
+Seasonality:
+Summer is the most popular season for bike rentals, with both casual riders and annual members showing a noticeable spike in usage.
+inter sees a significant drop in bike rentals overall. However, interestingly, annual members recorded 274,513 more rides than casual riders during the winter season, highlighting their consistent usage even in colder months.
+
+Distance Traveled: Despite the differences in ride duration and frequency, the distance traveled by both casual riders and annual members is about 2.1 km, indicating that both groups tend to use bikes for similar distances on average, even if the ride duration varies.
