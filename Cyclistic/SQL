@@ -1,1 +1,283 @@
+I uploaded 12 monthly data tables to BigQuery and then combined them into 1 table named combined_table.
 
+CREATE TABLE `sigma-maker-448115-v8.bike.combined_table` AS
+SELECT * FROM `sigma-maker-448115-v8.bike.january`
+UNION ALL
+SELECT * FROM `sigma-maker-448115-v8.bike.febuary`
+UNION ALL
+SELECT * FROM `sigma-maker-448115-v8.bike.march`
+UNION ALL
+SELECT * FROM `sigma-maker-448115-v8.bike.april`
+UNION ALL
+SELECT * FROM `sigma-maker-448115-v8.bike.may`
+UNION ALL
+SELECT * FROM `sigma-maker-448115-v8.bike.june`
+UNION ALL
+SELECT * FROM `sigma-maker-448115-v8.bike.july`
+UNION ALL
+SELECT * FROM `sigma-maker-448115-v8.bike.august`
+UNION ALL
+SELECT * FROM `sigma-maker-448115-v8.bike.september`
+UNION ALL
+SELECT * FROM `sigma-maker-448115-v8.bike.october`
+UNION ALL
+SELECT * FROM `sigma-maker-448115-v8.bike.november`
+UNION ALL
+SELECT * FROM `sigma-maker-448115-v8.bike.december`;
+--------------------------------------------------------------------------------------------------------------------
+Next I took all the data without nulls and moved it to a new table titled combined_data_null
+
+CREATE TABLE `sigma-maker-448115-v8.bike.combined_table_null` AS
+  SELECT *
+  FROM `sigma-maker-448115-v8.bike.combined_table`
+WHERE ride_id IS NOT NULL
+  AND rideable_type IS NOT NULL
+  AND started_at IS NOT NULL
+  AND ended_at IS NOT NULL
+  AND start_station_name IS NOT NULL
+  AND start_station_id IS NOT NULL
+  AND end_station_name IS NOT NULL
+  AND end_station_id IS NOT NULL
+  AND start_lat IS NOT NULL
+  AND start_lng IS NOT NULL
+  AND end_lat IS NOT NULL
+  AND end_lng IS NOT NULL
+  AND member_casual IS NOT NULL
+--This query moves all the data without nulls into a new table while perserving the original table.
+--------------------------------------------------------------------------------------------------------------------
+Next, I removed duplicates from the data with the DISTINCT function
+
+SELECT 
+DISTINCT * 
+  FROM `sigma-maker-448115-v8.bike.combined_table_null`
+--Removing duplicates from our data
+--------------------------------------------------------------------------------------------------------------------
+Next, I removed trailing and leading spaces from the ride_id column
+
+SELECT
+TRIM(ride_id) AS trimmed_value
+  FROM `sigma-maker-448115-v8.bike.combined_table_null`
+--Trimed leading and trailing spaces from ride_id column
+--------------------------------------------------------------------------------------------------------------------
+I noticed the started_at and ended_at columns contained date and time and some of the timestamps had fractional seconds.
+I chose to remove the fractional seconds to make the data consistent.
+I split started_at into seperate columns start_date and start_time.
+
+SELECT 
+  DATE(started_at) AS start_date,
+  TIME(started_at) AS start_time
+FROM `sigma-maker-448115-v8.bike.combined_table_null_new`;
+--Splitting start data/time into seperate columns
+--------------------------------------------------------------------------------------------------------------------
+I removed fractional seconds from start_time and put the clean data in a column titled start_time_clean.
+
+SELECT 
+  DATE(started_at) AS start_date,
+  TIME(started_at) AS start_time,
+  FORMAT_TIME('%H:%M:%S', TIME(started_at)) AS start_time_clean
+FROM `sigma-maker-448115-v8.bike.combined_table_null_new`;
+--Creating a column titled 'start_time_clean' to remove fractional seconds
+--------------------------------------------------------------------------------------------------------------------
+I added start_time_clean, start_date and start_timestamp to a temp table.
+
+SELECT
+  *,
+  DATE(started_at) AS start_date,
+  FORMAT_TIME('%H:%M:%S', TIME(started_at)) AS start_time_clean,
+  TIMESTAMP(CONCAT(CAST(DATE(started_at) AS STRING), ' ', CAST(FORMAT_TIME('%H:%M:%S', TIME(started_at)) AS STRING)))
+  AS start_timestamp
+FROM `sigma-maker-448115-v8.bike.combined_table_null_new`;
+--Adds start_time_clean, start_date, start_timestamp to full data temporary table
+--------------------------------------------------------------------------------------------------------------------
+I followed the same steps as before as split the ended_at column into end_date and end_time.
+
+SELECT
+  DATE(ended_at) AS end_date,
+  TIME(ended_at) AS end_time
+FROM `sigma-maker-448115-v8.bike.combined_table_null_new`;
+--Splitting end date/time into seperate columns
+--------------------------------------------------------------------------------------------------------------------
+I removed fractional seconds from end_time column and created a new column titled end_time_clean.
+
+SELECT
+  DATE(ended_at) AS end_date,
+  TIME(ended_at) AS end_time,
+  FORMAT_TIME('%H:%M:%S', TIME(ended_at)) AS end_time_clean
+FROM `sigma-maker-448115-v8.bike.combined_table_null_new`;
+--Creating a column titled 'end_time_clean' to remove fractional seconds
+--------------------------------------------------------------------------------------------------------------------
+I added end_time_clean, end_date and end_timestamp to a temp table.
+
+SELECT
+  *,
+  DATE(ended_at) AS end_date,
+  FORMAT_TIME('%H:%M:%S', TIME(ended_at)) AS end_time_clean,
+  TIMESTAMP(CONCAT(CAST(DATE(ended_at) AS STRING), ' ', CAST(FORMAT_TIME('%H:%M:%S', TIME(ended_at)) AS STRING)))
+  AS end_timestamp
+FROM `sigma-maker-448115-v8.bike.combined_table_null_new`;
+--Adds end_time_clean, end_date, end_timestamp to full data temporary table
+--------------------------------------------------------------------------------------------------------------------
+I added 6 new columns end_time_clean, end_date, end_timestamp, start_time_clean, start_date, start_timestamp to a table combined_table_null_new
+
+CREATE TABLE `sigma-maker-448115-v8.bike.combined_table_null_new` AS
+SELECT *,
+       NULL AS end_time_clean,
+       NULL AS end_date,
+       NULL AS end_timestamp,
+       NULL AS start_time_clean,
+       NULL AS start_date,
+       NULL AS start_timestamp
+FROM `sigma-maker-448115-v8.bike.combined_table_null`;
+--Adds new columns to existing table
+--------------------------------------------------------------------------------------------------------------------
+I formated the new columns
+
+UPDATE `sigma-maker-448115-v8.bike.combined_table_null_new` t
+SET t.end_time_clean = FORMAT_TIMESTAMP('%H:%M:%S', t.ended_at),
+    t.end_date = DATE(t.ended_at),
+    t.end_timestamp = t.ended_at,
+    t.start_time_clean = FORMAT_TIMESTAMP('%H:%M:%S', t.started_at),
+    t.start_date = DATE(t.started_at),
+    t.start_timestamp = t.started_at
+WHERE t.started_at IS NOT NULL 
+  AND t.ended_at IS NOT NULL;
+--Formatting for new columns
+--------------------------------------------------------------------------------------------------------------------
+I populated the new columns with data
+
+UPDATE `sigma-maker-448115-v8.bike.combined_table_null_new` t
+SET t.end_time_clean = FORMAT_TIMESTAMP('%H:%M:%S', t.ended_at),
+    t.end_date = DATE(t.ended_at),
+    t.end_timestamp = t.ended_at,
+    t.start_time_clean = FORMAT_TIMESTAMP('%H:%M:%S', t.started_at),
+    t.start_date = DATE(t.started_at),
+    t.start_timestamp = t.started_at
+WHERE t.started_at IS NOT NULL 
+  AND t.ended_at IS NOT NULL;
+--Updates new columns with data
+--------------------------------------------------------------------------------------------------------------------
+I dropped 4 columns started_at, ended_at, end_timestamp, start_timestamp as they had data that was already in the table.
+
+ALTER TABLE `sigma-maker-448115-v8.bike.combined_table_null_new`
+DROP COLUMN started_at;
+
+ALTER TABLE `sigma-maker-448115-v8.bike.combined_table_null_new`
+DROP COLUMN ended_at;
+
+ALTER TABLE `sigma-maker-448115-v8.bike.combined_table_null_new`
+DROP COLUMN end_timestamp;
+
+ALTER TABLE `sigma-maker-448115-v8.bike.combined_table_null_new`
+DROP COLUMN start_timestamp;
+--Droping duplicate columns
+--------------------------------------------------------------------------------------------------------------------
+I added a new column trip_duration_minutes
+
+ALTER TABLE `sigma-maker-448115-v8.bike.combined_table_null_new`
+ADD COLUMN trip_duration_minutes INT64;
+--Adds a column to the table named trip_duration_minutes
+--------------------------------------------------------------------------------------------------------------------
+I formated and calculated the data for trip_duration_minutes column.
+
+UPDATE `sigma-maker-448115-v8.bike.combined_table_null_new` t
+SET t.trip_duration_minutes = TIMESTAMP_DIFF(
+                                PARSE_TIMESTAMP('%H:%M:%S', t.end_time_clean), 
+                                PARSE_TIMESTAMP('%H:%M:%S', t.start_time_clean), 
+                                MINUTE)
+WHERE t.start_time_clean IS NOT NULL 
+  AND t.end_time_clean IS NOT NULL;
+--Changes STRING to TIMESTAMP and calculates trip_duration_minutes
+--------------------------------------------------------------------------------------------------------------------
+I deleted rows where the trip_duration_minutes were calculated as 0 or a negative number.
+The trip_duration_minutes got zeros or negatives, because I did the calculation after I split the dates from the times.
+Next time I will calculate this information if it's relevant before I seperate the date and time columns. 
+In this case it didn't change the outcome of my analysis as this query deleted three thousand rows of data, but I still had over 4 million rows to work with.
+
+DELETE FROM `sigma-maker-448115-v8.bike.combined_table_null_new`
+WHERE trip_duration_minutes <= 0;
+--Deletes rows that are <=0
+--------------------------------------------------------------------------------------------------------------------
+I calculated the MAX trip duration for members and casual riders.
+
+SELECT
+  member_casual,  -- Group by member vs casual
+  MAX(trip_duration_minutes) AS max_trip_duration_minutes  -- Get the maximum trip duration for each group
+FROM `sigma-maker-448115-v8.bike.combined_table_null_new`
+GROUP BY member_casual;  -- Group by member_casual to get max per group
+--------------------------------------------------------------------------------------------------------------------
+I calculated which season is most popular for both members and casual riders. I also formated the data as TIMESTAMP and gave each month an assigned season.
+
+SELECT
+  member_casual,
+  -- Assign seasons based on month using start_date and start_time_clean
+  CASE
+    WHEN EXTRACT(MONTH FROM CAST(CONCAT(start_date, ' ', start_time_clean) AS TIMESTAMP)) IN (12, 1, 2) THEN 'Winter'
+    WHEN EXTRACT(MONTH FROM CAST(CONCAT(start_date, ' ', start_time_clean) AS TIMESTAMP)) IN (3, 4, 5) THEN 'Spring'
+    WHEN EXTRACT(MONTH FROM CAST(CONCAT(start_date, ' ', start_time_clean) AS TIMESTAMP)) IN (6, 7, 8) THEN 'Summer'
+    WHEN EXTRACT(MONTH FROM CAST(CONCAT(start_date, ' ', start_time_clean) AS TIMESTAMP)) IN (9, 10, 11) THEN 'Fall'
+    ELSE 'Unknown'
+  END AS season,
+  
+  COUNT(DISTINCT ride_id) AS total_rides,  -- Total number of rides
+  COUNT(DISTINCT DATE(CAST(CONCAT(start_date, ' ', start_time_clean) AS TIMESTAMP))) AS days_ridden,  -- Days the bike was used
+  AVG(
+    TIMESTAMP_DIFF(
+      CAST(CONCAT(end_date, ' ', end_time_clean) AS TIMESTAMP), 
+      CAST(CONCAT(start_date, ' ', start_time_clean) AS TIMESTAMP), 
+      MINUTE
+    )
+  ) AS avg_trip_duration_minutes,  -- Average duration in minutes
+  AVG(ST_DISTANCE(
+    ST_GEOGPOINT(start_lng, start_lat),
+    ST_GEOGPOINT(end_lng, end_lat)
+  )) AS avg_distance_meters  -- Average distance in meters
+
+FROM `sigma-maker-448115-v8.bike.combined_table_null_new`
+WHERE start_lat IS NOT NULL
+  AND start_lng IS NOT NULL
+  AND end_lat IS NOT NULL
+  AND end_lng IS NOT NULL
+  AND start_time_clean IS NOT NULL
+  AND end_time_clean IS NOT NULL
+GROUP BY member_casual, season
+ORDER BY member_casual, season;
+--------------------------------------------------------------------------------------------------------------------
+I created a table popular_ride_days_all to see which day of the week is most popular for members and casual riders.
+
+CREATE OR REPLACE TABLE `sigma-maker-448115-v8.bike.popular_ride_days_all` AS
+SELECT
+  member_casual,
+  CASE
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 1 THEN 'Sunday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 2 THEN 'Monday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 3 THEN 'Tuesday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 4 THEN 'Wednesday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 5 THEN 'Thursday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 6 THEN 'Friday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 7 THEN 'Saturday'
+  END AS day_of_week,
+  COUNT(DISTINCT ride_id) AS rides_count  -- Count number of rides for each day and member type
+FROM `sigma-maker-448115-v8.bike.combined_table_null_new`
+WHERE start_date IS NOT NULL
+GROUP BY member_casual, day_of_week
+ORDER BY member_casual, day_of_week;
+--------------------------------------------------------------------------------------------------------------------
+I calculated the distance in meters between bike pickup and drop off for both member types. 
+
+CREATE OR REPLACE TABLE `sigma-maker-448115-v8.bike.popular_ride_days_all` AS
+SELECT
+  member_casual,
+  CASE
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 1 THEN 'Sunday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 2 THEN 'Monday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 3 THEN 'Tuesday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 4 THEN 'Wednesday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 5 THEN 'Thursday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 6 THEN 'Friday'
+    WHEN EXTRACT(DAYOFWEEK FROM start_date) = 7 THEN 'Saturday'
+  END AS day_of_week,
+  COUNT(DISTINCT ride_id) AS rides_count  -- Count number of rides for each day and member type
+FROM `sigma-maker-448115-v8.bike.combined_table_null_new`
+WHERE start_date IS NOT NULL
+GROUP BY member_casual, day_of_week
+ORDER BY member_casual, day_of_week;
