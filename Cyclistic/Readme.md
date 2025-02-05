@@ -24,4 +24,4 @@ The data used in this project is provided under the terms of the [Divvy Bikes Da
 
 # **Data Cleaning & Preparation**
 The data used in this analysis was cleaned and prepared using a series of SQL queries. For a detailed list of the queries used to clean and transform the data, please refer to the file linked below:
-[SQL Queries for Data Cleaning & Preparation]()
+[SQL Queries for Data Cleaning & Preparation](https://github.com/Data-cat750/analytics-portfolio/blob/main/Cyclistic/SQL)
