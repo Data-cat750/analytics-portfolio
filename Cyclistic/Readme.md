@@ -61,5 +61,6 @@ Distance Traveled: Despite the differences in ride duration and frequency, the d
 
 This chart compares the number of rides taken by members and casual riders across each day of the week.
 [Day of the Week, Member vs Casual Rides](https://public.tableau.com/views/BikeRentalsbyDayAComparisonofMemberandCasualRiders/Sheet3?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+
 This chart compares the number of rides taken by members and casual riders across different seasons.
 [Seasonal, Member vs Casual Rides](https://public.tableau.com/views/BikeRentalsAnalysis_17387987204010/Sheet3?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
