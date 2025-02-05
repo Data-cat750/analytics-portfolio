@@ -52,6 +52,6 @@ In contrast, annual members use the bikes more during weekdays, indicating that 
 
 Seasonality:
 Summer is the most popular season for bike rentals, with both casual riders and annual members showing a noticeable spike in usage.
-inter sees a significant drop in bike rentals overall. However, interestingly, annual members recorded 274,513 more rides than casual riders during the winter season, highlighting their consistent usage even in colder months.
+Winter sees a significant drop in bike rentals overall. However, interestingly, annual members recorded 274,513 more rides than casual riders during the winter season, highlighting their consistent usage even in colder months.
 
 Distance Traveled: Despite the differences in ride duration and frequency, the distance traveled by both casual riders and annual members is about 2.1 km, indicating that both groups tend to use bikes for similar distances on average, even if the ride duration varies.
