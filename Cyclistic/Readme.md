@@ -69,7 +69,7 @@ This chart compares the average ride time by member and casual riders. [Average 
 
 # **Recommendations**
 
-Recommendation: Focus on casual riders who use bikes more frequently on weekends. Since casual riders tend to ride more on weekends, offering weekend-specific promotions can encourage them to see the value in a membership.
+### Recommendation: Focus on casual riders who use bikes more frequently on weekends. Since casual riders tend to ride more on weekends, offering weekend-specific promotions can encourage them to see the value in a membership.
 
 Next steps: Run weekend promotions that offer discounted annual memberships or exclusive weekend ride perks to casual riders. By highlighting the added benefits of being a member, such as the ability to ride whenever they want.
 
