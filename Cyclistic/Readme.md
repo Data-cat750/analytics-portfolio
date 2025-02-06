@@ -69,17 +69,17 @@ This chart compares the average ride time by member and casual riders. [Average 
 
 # **Recommendations**
 
-### Recommendation:
+Recommendation:
 Focus on casual riders who use bikes more frequently on weekends. Since casual riders tend to ride more on weekends, offering weekend-specific promotions can encourage them to see the value in a membership.
 
 Next steps: Run weekend promotions that offer discounted annual memberships or exclusive weekend ride perks to casual riders. By highlighting the added benefits of being a member, such as the ability to ride whenever they want.
 
-### Recommendation:
+Recommendation:
 Use the peak riding season (summer) to capture more casual riders by offering exclusive membership promotions.
 
 Next steps: Provide summer-only membership discounts or free trial periods to casual riders during the busiest season. This capitalizes on the high demand and gives casual riders a taste of the full membership experience, increasing the chances of conversion.
 
-### Recommendation: 
+Recommendation: 
 Leverage your existing members to bring in new ones. People are more likely to try memberships when they hear positive recommendations from those they trust.
 
 Next steps: Introduce a referral program that rewards current members with free ride credits or discounts on membership renewals for successfully referring casual riders to become members. This creates a viral effect, where current members act as advocates for the benefits of membership.
