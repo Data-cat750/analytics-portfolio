@@ -69,21 +69,20 @@ This chart compares the average ride time by member and casual riders. [Average 
 
 # **Recommendations**
 
-### Recommendation: Focus on casual riders who use bikes more frequently on weekends. Since casual riders tend to ride more on weekends, offering weekend-specific promotions can encourage them to see the value in a membership.
+### Recommendation:
+Focus on casual riders who use bikes more frequently on weekends. Since casual riders tend to ride more on weekends, offering weekend-specific promotions can encourage them to see the value in a membership.
 
 Next steps: Run weekend promotions that offer discounted annual memberships or exclusive weekend ride perks to casual riders. By highlighting the added benefits of being a member, such as the ability to ride whenever they want.
 
-Recommendation: Use the peak riding season (summer) to capture more casual riders by offering exclusive membership promotions.
+### Recommendation:
+Use the peak riding season (summer) to capture more casual riders by offering exclusive membership promotions.
 
 Next steps: Provide summer-only membership discounts or free trial periods to casual riders during the busiest season. This capitalizes on the high demand and gives casual riders a taste of the full membership experience, increasing the chances of conversion.
 
-Recommendation: Leverage your existing members to bring in new ones. People are more likely to try memberships when they hear positive recommendations from those they trust.
+### Recommendation: 
+Leverage your existing members to bring in new ones. People are more likely to try memberships when they hear positive recommendations from those they trust.
 
 Next steps: Introduce a referral program that rewards current members with free ride credits or discounts on membership renewals for successfully referring casual riders to become members. This creates a viral effect, where current members act as advocates for the benefits of membership.
-
-Yes, adding a conclusion is a great way to wrap up your analysis and leave the reader with a clear, concise summary of your findings and recommendations. Your conclusion should briefly summarize the key insights and reinforce the importance of implementing your recommendations.
-
-Here’s a suggestion for your conclusion:
 
 # Conclusion
 In summary, the analysis of casual and member riders reveals key differences in behavior that can be leveraged to increase membership conversions. By focusing on weekend riders, offering targeted promotions, and emphasizing the value of membership, the business can successfully shift more casual riders to become long-term members. Implementing these strategies, alongside continual monitoring and adjustment based on rider behavior, will help ensure sustainable growth and customer loyalty.
